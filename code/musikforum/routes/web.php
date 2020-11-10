@@ -13,10 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Welcome-Stuff
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+//Auth
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Forum
+Route::get('/forum', function () {
+    $forumData = DB::table('forum')->get();
+
+    return view('forum', ['forumData' => $forumData]);
+});
+
+//Shows
+Route::get('/shows', function () {
+    $showsData = DB::table('shows')->get();
+
+    return view('shows', ['showsData' => $showsData]);
+});

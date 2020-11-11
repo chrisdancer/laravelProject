@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-            @foreach($showsData as $key => $data)
+            @foreach($currentPageData as $key => $data)
                 <tr>
                     <td>{{$data->artistNr}}</td>
                     <td>{{$data->locationNr}}</td>

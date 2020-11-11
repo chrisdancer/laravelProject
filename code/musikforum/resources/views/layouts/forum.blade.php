@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($forumData as $key => $data)
+            @foreach($currentPageData as $key => $data)
                 <tr>
                     <td>{{$data->created_at}}</td>
                     <td>{{$data->userNr}}</td>

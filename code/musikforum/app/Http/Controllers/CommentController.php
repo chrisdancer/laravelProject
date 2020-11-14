@@ -14,7 +14,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::latest()->paginate(5);
+
+        return view('layouts.comments.index',compact('comments'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +27,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.comments.create');
     }
 
     /**
@@ -35,7 +38,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'comment' => 'required'
+        ]);
+
+        Comment::create($request->all());
+
+        return redirect()->route('layouts.comments.index')
+            ->with('success','Comment created successfully.');
     }
 
     /**
@@ -46,7 +56,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        return view('layouts.comments.show',compact('comment'));
     }
 
     /**
@@ -57,7 +67,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        return view('layouts.comments.edit',compact('comment'));
     }
 
     /**
@@ -69,7 +79,14 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $request->validate([
+            'comment' => 'required'
+        ]);
+
+        $comment->update($request->all());
+
+        return redirect()->route('layouts.comments.index')
+            ->with('success','Comment updated successfully');
     }
 
     /**
@@ -80,6 +97,9 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return redirect()->route('layouts.comments.index')
+            ->with('success','Comment deleted successfully');
     }
 }

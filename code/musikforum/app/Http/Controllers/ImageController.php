@@ -14,7 +14,10 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $images = Image::latest()->paginate(5);
+
+        return view('layouts.images.index',compact('images'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +27,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.images.create');
     }
 
     /**
@@ -35,7 +38,14 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'required'
+        ]);
+
+        Image::create($request->all());
+
+        return redirect()->route('layouts.images.index')
+            ->with('success','Image created successfully.');
     }
 
     /**
@@ -46,7 +56,7 @@ class ImageController extends Controller
      */
     public function show(Image $image)
     {
-        //
+        return view('layouts.images.show',compact('image'));
     }
 
     /**
@@ -57,7 +67,7 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        //
+        return view('layouts.images.edit',compact('image'));
     }
 
     /**
@@ -69,7 +79,14 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        //
+        $request->validate([
+            'image' => 'required',
+        ]);
+
+        $image->update($request->all());
+
+        return redirect()->route('layouts.images.index')
+            ->with('success','Image updated successfully');
     }
 
     /**
@@ -80,6 +97,9 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $image->delete();
+
+        return redirect()->route('layouts.images.index')
+            ->with('success','Image deleted successfully');
     }
 }

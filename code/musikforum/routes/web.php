@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,21 +23,31 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-
 //Auth
 Auth::routes();
 
-//Forum
-Route::get('/forum', function () {
-    $forumData = DB::table('forum')->get();
+//Article
+Route::resource('themes', ThemeController::class);
+Route::get('/relatedArticles/{relatedThemeID}', [ThemeController::class, 'relatedArticles']
+)->name('relatedArticles');
 
-    return view('forum', ['forumData' => $forumData]);
-});
+Route::resource('articles', ArticleController::class);
 
-//Shows
-Route::get('/shows', function () {
-    $showsData = DB::table('shows')->get();
+//Menu
+Route::get('/{currentPage}', [MenuController::class, "showView"]);
 
-    return view('shows', ['showsData' => $showsData]);
-});
+
+
+
+
+//images
+Route::resource('images', ImageController::class);
+//test
+Route::resource('products', ProductController::class);
+
+
+
+
+
+
+

@@ -32,7 +32,7 @@ class HomeController extends Controller
                 $join->on('bookedShows.user_id','=','users.id')
                     ->on('bookedShows.show_id','=','shows.id');
             })
-            ->select('shows.tourName')
+            ->select('shows.*')
             ->where('user_id', '=', Auth::id())
             ->get();
         return view('home')->with(['shows'=>$shows]);

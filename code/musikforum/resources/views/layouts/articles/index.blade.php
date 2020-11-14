@@ -17,7 +17,7 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>Theme-Nr</th>
+        <th>Theme-Name</th>
         <th>Title</th>
         <th>Text</th>
         <th width="280px">Action</th>
@@ -26,7 +26,7 @@
         @isset($relatedThemeID)
             @if($article->theme_id == $relatedThemeID)
             <tr>
-                <td>{{ $article->theme_id }}</td>
+                <td>{{ $article->theme->name }}</td>
                 <td>{{ $article->title }}</td>
                 <td>{{ $article->text }}</td>
                 <td>
@@ -45,7 +45,7 @@
         @endisset
         @empty($relatedThemeID)
             <tr>
-                <td>{{ $article->theme_id }}</td>
+                <td>{{ $article->theme->name }}</td>
                 <td>{{ $article->title }}</td>
                 <td>{{ $article->text }}</td>
                 <td>

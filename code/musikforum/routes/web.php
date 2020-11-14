@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ArticleController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 
@@ -18,11 +19,7 @@ use App\Http\Controllers\MenuController;
 |
 */
 
-//Welcome-Stuff
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//Dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Auth
@@ -37,8 +34,17 @@ Route::get('/relatedArticles/{relatedThemeID}', [ThemeController::class, 'relate
 //Images
 Route::resource('images', ImageController::class);
 Route::resource('comments', CommentController::class);
-Route::get('/relatedComments/{relatedImageID}', [CommentController::class, 'relatedComment']
+Route::post('/relatedComments/{relatedImageID}', [CommentController::class, 'relatedComment']
 )->name('createRelatedComment');
+
+//Show
+Route::post('/book/{showID}', function ($showID){
+    DB::table('bookedShows')->insert(
+        ['show_id' => $showID, 'user_id' => Auth::id()]
+    );
+}
+)->name('book');
+
 
 //Menu
 Route::get('/{currentPage}', [MenuController::class, "showView"]);

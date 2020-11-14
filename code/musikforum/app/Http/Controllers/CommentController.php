@@ -102,4 +102,29 @@ class CommentController extends Controller
         return redirect()->route('layouts.comments.index')
             ->with('success','Comment deleted successfully');
     }
+
+    public function relatedComment($relatedImageID){
+
+        return view('layouts.comments.createRelated')
+            ->with(['relatedImageID' => $relatedImageID]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeRelated(Request $request)
+    {
+        $request->validate([
+            'comment' => 'required',
+            'image_id' => 'required'
+        ]);
+
+        Comment::create($request->all());
+
+        return redirect()->route('layouts.comments.index')
+            ->with('success','Comment created successfully.');
+    }
 }

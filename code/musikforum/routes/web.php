@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
@@ -36,18 +37,11 @@ Route::resource('articles', ArticleController::class);
 //Menu
 Route::get('/{currentPage}', [MenuController::class, "showView"]);
 
-
-
-
-
-//images
+//Images
 Route::resource('images', ImageController::class);
-//test
-Route::resource('products', ProductController::class);
+Route::resource('comments', CommentController::class);
 
-
-
-
-
+Route::get('/relatedComments/{relatedImageID}', [CommentController::class, 'relatedComment']
+)->name('createRelatedComment');
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
@@ -27,21 +28,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Auth
 Auth::routes();
 
-//Article
+//Articles
 Route::resource('themes', ThemeController::class);
+Route::resource('articles', ArticleController::class);
 Route::get('/relatedArticles/{relatedThemeID}', [ThemeController::class, 'relatedArticles']
 )->name('relatedArticles');
-
-Route::resource('articles', ArticleController::class);
-
-//Menu
-Route::get('/{currentPage}', [MenuController::class, "showView"]);
 
 //Images
 Route::resource('images', ImageController::class);
 Route::resource('comments', CommentController::class);
-
 Route::get('/relatedComments/{relatedImageID}', [CommentController::class, 'relatedComment']
 )->name('createRelatedComment');
+
+//Menu
+Route::get('/{currentPage}', [MenuController::class, "showView"]);
+
+
 
 

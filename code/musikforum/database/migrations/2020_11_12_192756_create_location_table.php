@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForumTable extends Migration
+class CreateLocationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateForumTable extends Migration
      */
     public function up()
     {
-        Schema::create('forum', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('created_at', 0);
-            $table->string('userName');
-            $table->string('message');
+            $table->timestamps();
+            $table->string('venueName');
+            $table->string('streetName');
+            $table->integer('houseNumber');
+            $table->string('city');
+            $table->string('plz');
         });
     }
 
@@ -28,6 +31,6 @@ class CreateForumTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forum');
+        Schema::dropIfExists('locations');
     }
 }

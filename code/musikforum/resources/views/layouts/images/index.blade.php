@@ -28,9 +28,9 @@
         <td>{{ $image->description }}</td>
         <td>{{ $image->image }}</td>
         <td>
-            <form action="{{ route('images.destroy',$theme->id) }}" method="POST">
-                <a class="btn btn-info" href="{{ route('images.show' ,$theme->id) }}">Show</a>
-                <a class="btn btn-success" href="{{ route('createComment', $theme->id) }}"> Comment</a>
+            <form action="{{ route('images.destroy',$image->id) }}" method="POST">
+                <a class="btn btn-info" href="{{ route('images.show' ,$image->id) }}">Show</a>
+                <a class="btn btn-success" href="{{ route('createComment', $image->id) }}"> Comment</a>
                 @if (Auth::id() == $image->user_id)
                 @csrf
                 @method('DELETE')

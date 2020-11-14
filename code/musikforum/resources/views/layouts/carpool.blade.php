@@ -12,6 +12,7 @@
         <th scope="col">Leaving on</th>
         <th scope="col">Seats available</th>
         <th scope="col">Seats taken</th>
+        <th width="280px">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +25,22 @@
         <td>{{$data->departureDate}}</td>
         <td>{{$data->seatsAvailable}}</td>
         <td>{{$data->seatsTaken}}</td>
+        <td>
+            <form action="{{ route('carpool.destroy',$carpool->id) }}" method="POST">
+
+                <a class="btn btn-info" href="{{ route('carpool.show',$carpool->id) }}">Show</a>
+
+                @can('edit-carpool', $carpool)
+                <a class="btn btn-primary" href="{{ route('carpool.edit',$carpool->id) }}">Edit</a>
+                @endcan
+
+                @csrf
+                @method('DELETE')
+                @can('edit-carpool', $carpool)
+                <button type="submit" class="btn btn-danger">Delete</button>
+                @endcan
+            </form>
+        </td>
     </tr>
     @endforeach
     </tbody>

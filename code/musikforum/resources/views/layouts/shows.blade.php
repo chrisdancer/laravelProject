@@ -17,8 +17,8 @@
         <tbody>
             @foreach($currentPageData as $key => $data)
                 <tr>
-                    <td>{{$data->artistNr}}</td>
-                    <td>{{$data->locationNr}}</td>
+                    <td>{{$data->artist_id}}</td>
+                    <td>{{$data->location_id}}</td>
                     <td>{{$data->tourName}}</td>
                     <td>{{$data->start}}</td>
                     <td>{{$data->date}}</td>

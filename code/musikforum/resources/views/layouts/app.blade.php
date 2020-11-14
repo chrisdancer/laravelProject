@@ -81,14 +81,14 @@
                     <li class={{Request::path() === '/' ? 'current_page_item' : ''}}>
                         <a class="nav-link" href="../home">Home</span></a>
                     </li>
-                    <li class={{Request::path() === 'forum' ? 'current_page_item' : ''}}>
-                        <a class="nav-link" href="/forum">Forum</a>
+                    <li class={{Request::path() === 'themes' ? 'current_page_item' : ''}}>
+                        <a class="nav-link" href="/themes">Forum</a>
                     </li>
                     <li class={{Request::path() === 'shows' ? 'current_page_item' : ''}}>
                         <a class="nav-link" href="/shows">Shows</a>
                     </li>
-                    <li class={{Request::path() === 'gallery' ? 'current_page_item' : ''}}>
-                        <a class="nav-link" href="/gallery">Gallery</a>
+                    <li class={{Request::path() === 'images' ? 'current_page_item' : ''}}>
+                        <a class="nav-link" href="/images">Gallery</a>
                     </li>
                     <li class={{Request::path() === 'carpool' ? 'current_page_item' : ''}}>
                         <a class="nav-link" href="/carpool">Carpool</a>

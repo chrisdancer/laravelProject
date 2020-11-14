@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<h1>This page is still work in progress.</h1>
 <table class="table table-striped">
     <thead>
     <tr>

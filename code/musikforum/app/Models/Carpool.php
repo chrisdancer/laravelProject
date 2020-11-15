@@ -9,6 +9,10 @@ class Carpool extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'driverName', 'departureLocation', 'destination', 'show'
+    ];
+
     public function user() {
         Return $this->hasMany(User::class);
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarpoolController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ThemeController;
@@ -37,13 +38,16 @@ Route::resource('comments', CommentController::class);
 Route::post('/relatedComments/{relatedImageID}', [CommentController::class, 'relatedComment']
 )->name('createRelatedComment');
 
+//Carpools
+Route::resource('carpools', CarpoolController::class);
+
 //Show
 Route::post('/book/{showID}', function ($showID){
     DB::table('bookedShows')->insert(
         ['show_id' => $showID, 'user_id' => Auth::id()]
     );
-}
-)->name('book');
+    return redirect('/shows');
+})->name('book');
 
 
 //Menu

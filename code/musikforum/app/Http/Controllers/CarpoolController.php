@@ -42,11 +42,10 @@ class CarpoolController extends Controller
             'driverName' => 'required',
             'departureLocation' => 'required',
             'destination' => 'required',
-            'show' => 'required',
-            'seatsAvailable' => 'required',
+            'show' => 'required'
         ]);
 
-        Carpool::create($request->except('_token'));
+        Carpool::create($request->all());
 
         return redirect()->route('layouts.carpools.index')
             ->with('success','Carpool created successfully.');
@@ -87,11 +86,10 @@ class CarpoolController extends Controller
             'driverName' => 'required',
             'departureLocation' => 'required',
             'destination' => 'required',
-            'show' => 'required',
-            'seatsAvailable' => 'required',
+            'show' => 'required'
         ]);
 
-        $carpool->update($request->except('_token'));
+        $carpool->update($request->all());
 
         return redirect()->route('layouts.carpools.index')
             ->with('success','Carpool updated successfully');

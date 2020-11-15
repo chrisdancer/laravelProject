@@ -6,7 +6,7 @@
 </div>
 
 <div class="pull-right">
-    <a class="btn btn-success" href="{{ route('articles.create' ,$relatedThemeID) }}"> Comment</a>
+    <a class="btn btn-success" href="{{ route('articles.create' ,$article->theme_id) }}"> Comment</a>
 </div>
 <table class="table table-bordered">
     <tr>

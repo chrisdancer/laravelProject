@@ -30,7 +30,7 @@
         <td>
             <form action="{{ route('images.destroy',$image->id) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('images.show' ,$image->id) }}">Show</a>
-                <a class="btn btn-success" href="{{ route('createComment', $image->id) }}"> Comment</a>
+                <a class="btn btn-success" href="{{ route('createRelatedComment', $image->id) }}"> Comment</a>
                 @if (Auth::id() == $image->user_id)
                 @csrf
                 @method('DELETE')

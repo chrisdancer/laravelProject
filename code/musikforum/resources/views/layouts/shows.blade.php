@@ -12,6 +12,7 @@
             <th scope="col">Price</th>
             <th scope="col">Safety Precautions</th>
             <th scope="col">Cancelled</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -24,8 +25,12 @@
                     <td>{{$data->date}}</td>
                     <td>{{$data->price}}</td>
                     <td>{{$data->safetyPrecautions}}</td>
+                    <td>{{ $data->cancelled == 0 ? "no" : "yes" }}</td>
                     <td>
-                        {{  $data->cancelled == 0 ? "no" : "yes" }}
+                        <form action="{{ route('book',$data->id) }}" method="POST">
+                            @csrf
+                            <button class="btn btn-info" type="submit" href="{{ route('book',$data->id) }}">Book</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

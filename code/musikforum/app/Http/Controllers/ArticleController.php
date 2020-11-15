@@ -44,7 +44,7 @@ class ArticleController extends Controller
             'text' => 'required'
         ]);
         Article::create($request->except('user_id'));
-        return redirect()->route('relatedArticles', Article::getThemeID()->theme_id)
+        return redirect()->route('relatedArticles', Article::getThemeID())
             ->with('success','Article created successfully.');
     }
 

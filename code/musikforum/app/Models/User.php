@@ -44,4 +44,8 @@ class User extends Authenticatable
     Public function article() {
         Return $this->hasMany(Article::class, 'article_id');
     }
+
+    public function carpool() {
+        Return $this->hasMany(Carpool::class);
+    }
 }

@@ -8,12 +8,18 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    <ul class="list-group">
-                        <li class="nav-header disabled"><a>These are your booked shows:</a></li>
+                    <h4>These are your booked shows:</h4>
+                    <table>
+                        <thead>
+                            <th>Tour-Name:</th>
+                        </thead>
+                        <tbody>
                         @foreach($shows as $show)
-                        <li class="list-group-item">{{ $show->tourName }}</li>
+                            <td class="list-group-item">{{ $show->tourName }}</td>
                         @endforeach
-                    </ul>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

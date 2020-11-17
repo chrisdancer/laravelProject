@@ -23,14 +23,14 @@
 </div>
 @endif
 
-<form action="{{ route('articles.store') }}" method="POST">
+<form action="{{ route('articles.store', $relatedThemeID) }}" method="POST">
     @csrf
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Theme-Nr:</strong>
-                <input type="text" name="theme_id" class="form-control" placeholder="{{ $relatedThemeID ?? '' }}" value="{{ $relatedThemeID ?? '' }}">
+                <input type="text" name="theme_id" class="form-control" value="{{ $relatedThemeID}}" readonly>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

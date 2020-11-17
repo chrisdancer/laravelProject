@@ -45,7 +45,7 @@ class ThemeController extends Controller
 
         Theme::create($request->all());
 
-        return redirect()->route('layouts.themes.index')
+        return redirect('themes')
             ->with('success','Theme created successfully.');
     }
 
@@ -86,7 +86,7 @@ class ThemeController extends Controller
 
         $theme->update($request->all());
 
-        return redirect()->route('layouts.themes.index')
+        return redirect('themes')
             ->with('success','Theme updated successfully');
     }
 
@@ -100,14 +100,7 @@ class ThemeController extends Controller
     {
         $theme->delete();
 
-        return redirect()->route('layouts.themes.index')
+        return redirect('themes')
             ->with('success','Theme deleted successfully');
-    }
-
-    public function relatedArticles($relatedThemeID)
-    {
-        $articles = Article::latest()->paginate(5);
-        return view('layouts.articles.related',compact('articles'))
-            ->with(['relatedThemeID' => $relatedThemeID]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,8 +44,9 @@ class ArticleController extends Controller
             'title' => 'required',
             'text' => 'required'
         ]);
-        Article::create($request->except('user_id'));
-        return redirect()->route('relatedArticles', Article::getThemeID())
+        $newArticle = Article::create($request->except('user_id'));
+        $theme_id = $newArticle->theme_id;
+        return redirect()->route('articles.show',  $theme_id)
             ->with('success','Article created successfully.');
     }
 
@@ -54,9 +56,16 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($relatedThemeID)
     {
-        return view('layouts.articles.show',compact('article'));
+        $articles = Article::where('theme_id', $relatedThemeID)->get()->toArray();
+        $theme_names = Theme::where('id',$relatedThemeID)->get('name')->toArray();
+
+        return view('layouts.articles.related', compact('articles'))
+            ->with(['relatedThemeID' => $relatedThemeID,
+                    'articles' => $articles,
+                    'themes' =>  $theme_names]
+            );
     }
 
     /**
@@ -109,15 +118,9 @@ class ArticleController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function createRelatedArticle(Request $request, $relatedThemeID)
+    public function createRelatedArticle($relatedThemeID)
     {
-        $request->validate([
-            'title' => 'required',
-            'text' => 'required'
-        ]);
-        $request['theme_id'] = $relatedThemeID;
-        Article::create($request->except('user_id', 'theme_id'));
-        return redirect()->route('relatedArticles')
-            ->with('success','Article created successfully.');
+        return view('layouts.articles.create')
+            ->with('relatedThemeID',$relatedThemeID);
     }
 }

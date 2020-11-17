@@ -27,9 +27,9 @@
                     <td>{{$data->safetyPrecautions}}</td>
                     <td>{{ $data->cancelled == 0 ? "no" : "yes" }}</td>
                     <td>
-                        <form action="{{ route('book',$data->id) }}" method="POST">
+                        <form action="{{ route('bookShow',$data->id) }}" method="POST">
                             @csrf
-                            <button class="btn btn-info" type="submit" href="{{ route('book',$data->id) }}">Book</button>
+                            <button class="btn btn-info" type="submit" href="{{ route('bookShow',$data->id) }}">Book</button>
                         </form>
                     </td>
                 </tr>

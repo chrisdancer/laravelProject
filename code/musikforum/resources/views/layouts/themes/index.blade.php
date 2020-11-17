@@ -17,17 +17,17 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>No</th>
+        <th>Created at</th>
         <th>Name</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($themes as $theme)
     <tr>
-        <td>{{ ++$i }}</td>
+        <td>{{ $theme->created_at }}</td>
         <td>{{ $theme->name }}</td>
         <td>
             <form action="{{ route('themes.destroy',$theme->id) }}" method="POST">
-                <a class="btn btn-info" href="{{ route('relatedArticles' ,$theme->id) }}">Show</a>
+                <a class="btn btn-info" href="{{ route('articles.show' ,$theme->id) }}">Show</a>
             </form>
         </td>
     </tr>

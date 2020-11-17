@@ -31,6 +31,10 @@ Route::resource('themes', ThemeController::class);
 Route::resource('articles', ArticleController::class);
 Route::get('/relatedArticles/{relatedThemeID}', [ThemeController::class, 'relatedArticles']
 )->name('relatedArticles');
+Route::get('/relatedArticles/{relatedThemeID}', [ArticleController::class, 'createRelatedArticle']
+)->name('createRelatedArticle');
+Route::post('/relatedArticles/{relatedThemeID}', [ArticleController::class, 'storeArticle']
+)->name('storeRelatedArticle');
 
 //Images
 Route::resource('images', ImageController::class);
@@ -40,14 +44,25 @@ Route::post('/relatedComments/{relatedImageID}', [CommentController::class, 'rel
 
 //Carpools
 Route::resource('carpools', CarpoolController::class);
+Route::post('/book/{carpoolID}', function ($carpoolID){
+    DB::table('bookedCarpools')->insert(
+        ['carpool_id' => $carpoolID, 'user_id' => Auth::id()]
+    );
+
+    $query = DB::table('carpools')->where('id', $carpoolID);
+    $query->increment('seatsTaken', 1);
+    $query->decrement('seatsAvailable', 1);
+
+    return redirect('carpools');
+})->name('bookCarpool');
 
 //Show
 Route::post('/book/{showID}', function ($showID){
     DB::table('bookedShows')->insert(
         ['show_id' => $showID, 'user_id' => Auth::id()]
     );
-    return redirect('/shows');
-})->name('book');
+    return redirect('shows');
+})->name('bookShow');
 
 
 //Menu

@@ -30,13 +30,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>DriverName:</strong>
-                <input type="text" name="driverName" class="form-control" placeholder="Name">
+                <input type="text" name="driverName" class="form-control" placeholder="Driver Name">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Departure Location:</strong>
-                <input type="text" name="departureLocation" class="form-control" placeholder="departureLocation">
+                <input type="text" name="departureLocation" class="form-control" placeholder="Departure Location">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -49,6 +49,24 @@
             <div class="form-group">
                 <strong>Show:</strong>
                 <input type="text" name="show" class="form-control" placeholder="Show">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Departure Time:</strong>
+                <input type="text" name="departureTime" class="form-control" placeholder="Departure Time">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Departure Date:</strong>
+                <input type="text" name="departureDate" class="form-control" placeholder="Departure Date">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Seats Available:</strong>
+                <input type="text" name="seatsAvailable" class="form-control" placeholder="Seats Available">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

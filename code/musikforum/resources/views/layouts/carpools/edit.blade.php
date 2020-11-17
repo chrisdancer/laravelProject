@@ -30,8 +30,44 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                <input type="text" name="name" value="{{ $carpool->name }}" class="form-control" placeholder="Name">
+                <strong>DriverName:</strong>
+                <input type="text" name="driverName" value="{{ $carpool->driverName }}" class="form-control" placeholder="Driver Name">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Departure Location:</strong>
+                <input type="text" name="name" value="{{ $carpool->departureLocation }}" class="form-control" placeholder="Departure Location">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Destination:</strong>
+                <input type="text" name="destination" value="{{ $carpool->destination }}" class="form-control" placeholder="Destination">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Show:</strong>
+                <input type="text" name="show" value="{{ $carpool->show }}" class="form-control" placeholder="Show">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Departure Time:</strong>
+                <input type="text" name="departureTime" value="{{ $carpool->departureTime }}" class="form-control" placeholder="Departure Time">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Departure Date:</strong>
+                <input type="text" name="departureDate" value="{{ $carpool->departureDate }}" class="form-control" placeholder="Departure Date">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Seats Available:</strong>
+                <input type="text" name="seatsAvailable" value="{{ $carpool->seatsAvailable }}" class="form-control" placeholder="Seats Available">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

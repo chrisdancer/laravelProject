@@ -11,11 +11,29 @@
                     <h4>These are your booked shows:</h4>
                     <table>
                         <thead>
-                            <th>Tour-Name:</th>
+                            <th>Show:</th>
                         </thead>
                         <tbody>
                         @foreach($shows as $show)
-                            <td class="list-group-item">{{ $show->tourName }}</td>
+                        <td class="list-group-item">{{ $show->tourName }} at {{ $show->date }} with following safety precautions: </br>
+                            <span class="font-weight-bold">{{ $show->safetyPrecautions }}</span></td>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <h4></br>These are your booked carpools:</h4>
+                    <table>
+                        <thead>
+                        <th>Carpool-Date:</th>
+                        <th>Action:</th>
+                        </thead>
+                        <tbody>
+                        @foreach($carpools as $carpool)
+                        <td class="list-group-item">{{ $carpool->departureDate }} from {{ $carpool->departureLocation }} with {{ $carpool->driverName }}</td>
+                        <td>
+                            <form action="{{ route('carpools.show',$carpool->id) }}" method="POST">
+                                <a class="btn btn-info" href="{{ route('carpools.show' ,$carpool->id) }}">Show</a>
+                            </form>
+                        </td>
                         @endforeach
                         </tbody>
                     </table>

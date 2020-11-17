@@ -34,8 +34,4 @@ class Article extends Model
     public function theme() {
         return $this->belongsTo(Theme::class, 'theme_id');
     }
-
-    public function findTheme() {
-        return Theme::find(1)->article;
-    }
 }

@@ -31,7 +31,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Theme-Nr:</strong>
-                <input type="text" name="theme_id" class="form-control" placeholder="Theme-Nr" value="{{ $article->theme_id }}">
+                <input type="text" name="theme_id" class="form-control" placeholder="Theme-Nr" value="{{ $article->theme_id }}" readonly>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

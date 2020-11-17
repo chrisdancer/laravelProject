@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Controllers\CarpoolController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Auth
 Auth::routes();
 
-//Articles
+//Forum
 Route::resource('themes', ThemeController::class);
 Route::resource('articles', ArticleController::class);
 Route::get('/relatedArticles/{relatedThemeID}', [ThemeController::class, 'relatedArticles']
@@ -36,11 +34,17 @@ Route::get('/relatedArticles/{relatedThemeID}', [ArticleController::class, 'crea
 Route::post('/relatedArticles/{relatedThemeID}', [ArticleController::class, 'storeArticle']
 )->name('storeRelatedArticle');
 
-//Images
-Route::resource('images', ImageController::class);
-Route::resource('comments', CommentController::class);
-Route::post('/relatedComments/{relatedImageID}', [CommentController::class, 'relatedComment']
-)->name('createRelatedComment');
+//Shows
+Route::get('/shows', function () {
+    $currentPageData = DB::table('shows')->get();
+    return view('layouts.shows', ['currentPageData' => $currentPageData]);
+});
+Route::post('/book/{showID}', function ($showID){
+    DB::table('bookedShows')->insert(
+        ['show_id' => $showID, 'user_id' => Auth::id()]
+    );
+    return redirect('shows');
+})->name('bookShow');
 
 //Carpools
 Route::resource('carpools', CarpoolController::class);
@@ -56,18 +60,9 @@ Route::post('/book/{carpoolID}', function ($carpoolID){
     return redirect('carpools');
 })->name('bookCarpool');
 
-//Show
-Route::post('/book/{showID}', function ($showID){
-    DB::table('bookedShows')->insert(
-        ['show_id' => $showID, 'user_id' => Auth::id()]
-    );
-    return redirect('shows');
-})->name('bookShow');
-
-
-//Menu
-Route::get('/{currentPage}', [MenuController::class, "showView"]);
-
-
+//404-Handling
+Route::fallback(function () {
+    return view('layouts.missing');
+});
 
 

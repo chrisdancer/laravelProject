@@ -87,9 +87,6 @@
                     <li class={{Request::path() === 'shows' ? 'current_page_item' : ''}}>
                         <a class="nav-link" href="/shows">Shows</a>
                     </li>
-                    <li class={{Request::path() === 'images' ? 'current_page_item' : ''}}>
-                        <a class="nav-link" href="/images">Gallery</a>
-                    </li>
                     <li class={{Request::path() === 'carpools' ? 'current_page_item' : ''}}>
                         <a class="nav-link" href="/carpools">Carpools</a>
                     </li>
